@@ -5,7 +5,7 @@
 }
 =======
 {
-  "latest_version": "9.8.4",
-  "download_url": "https://github.com/phaseydaisy/tigerclient/releases/download/Minecraft/TigerClientSetup.exe"
+  "latest_version": "9.8.5",
+  "download_url": "https://github.com/phaseydaisy/tigerclient/releases/download/v9.8.5/TigerClientSetup.exe"
 }
 >>>>>>> 1131d7a (chore: keep repo minimal for updates)
