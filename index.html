@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tiger Client</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="login-screen" class="login-screen">
+      <div class="login-card">
+        <h1>Tiger Client</h1>
+        <p>Sign in with your Microsoft account to continue</p>
+        <button class="primary" id="ms-login"><span>Sign in with Microsoft</span></button>
+        <button class="login-uninstall-btn" id="login-uninstall-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            <line x1="10" y1="11" x2="10" y2="17"></line>
+            <line x1="14" y1="11" x2="14" y2="17"></line>
+          </svg>
+          Uninstall
+        </button>
+      </div>
+    </div>
+
+    <div id="main-app" class="hidden">
+      <div class="custom-titlebar">
+        <div class="titlebar-drag-region"></div>
+        <div class="window-controls">
+          <button class="window-btn minimize-btn" id="minimize-btn" title="Minimize">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M0 5h10" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </button>
+          <button class="window-btn maximize-btn" id="maximize-btn" title="Maximize">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M0 0h10v10H0z" stroke="currentColor" stroke-width="1" fill="none"/>
+            </svg>
+          </button>
+          <button class="window-btn close-btn" id="close-btn" title="Close">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M0 0l10 10M10 0L0 10" stroke="currentColor" stroke-width="1"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="main-app-content">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Tiger</h2>
+        </div>
+        
+        <div class="sidebar-section">
+          <label class="sidebar-label">Minecraft Version</label>
+          <select id="profile-version" class="sidebar-select">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+        
+        <nav class="sidebar-nav">
+          <button class="sidebar-item active" id="home-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2L2 7V16H6V11H12V16H16V7L9 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Home</span>
+          </button>
+          <button class="sidebar-item" id="skin-editor-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2C5.13 2 2 5.13 2 9C2 12.87 5.13 16 9 16C12.87 16 16 12.87 16 9C16 5.13 12.87 2 9 2ZM9 4C10.1 4 11 4.9 11 6C11 7.1 10.1 8 9 8C7.9 8 7 7.1 7 6C7 4.9 7.9 4 9 4ZM9 14C7.33 14 5.86 13.15 5 11.85C5.03 10.5 7.67 9.75 9 9.75C10.32 9.75 12.97 10.5 13 11.85C12.14 13.15 10.67 14 9 14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Skins</span>
+          </button>
+          <button class="sidebar-item" id="mods-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M3 3H8V8H3V3ZM10 3H15V8H10V3ZM10 10H15V15H10V10ZM3 10H8V15H3V10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Mods</span>
+          </button>
+          <button class="sidebar-item" id="logs-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M2 3H16M2 7H16M2 11H16M2 15H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Logs</span>
+          </button>
+          <button class="sidebar-item" id="screenshots-btn">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="2" y="4" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="9" cy="9.5" r="2" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="6" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+            <span>Screenshots</span>
+          </button>
+        </nav>
+      </aside>
+      <div class="main-content">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Advanced Minecraft Launcher</p>
+          <h1>Tiger Control Center</h1>
+          <p class="subtitle">
+            Configure versions and launch into your worlds—all in one command deck.
+          </p>
+        </div>
+        <div class="hero-actions">
+          <button class="update-btn hidden" id="update-btn">
+            <span class="update-btn-icon">!</span>
+            <span class="update-btn-text">Update Ready</span>
+            <span class="update-btn-badge">NEW</span>
+          </button>
+          <div class="user-info-container">
+            <button class="user-info" id="user-info-btn">
+              <img class="user-avatar" id="user-avatar" src="" alt="Avatar" />
+              <div class="user-details">
+                <div class="user-name" id="user-name">Player</div>
+              </div>
+              <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="user-dropdown hidden" id="user-dropdown">
+              <button class="dropdown-item" id="alts-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 8C9.65685 8 11 6.65685 11 5C11 3.34315 9.65685 2 8 2C6.34315 2 5 3.34315 5 5C5 6.65685 6.34315 8 8 8ZM8 8C5.79086 8 4 9.79086 4 12V13M8 8C10.2091 8 12 9.79086 12 12V13M12 5C12.5523 5 13 4.55228 13 4C13 3.44772 12.5523 3 12 3M4 5C3.44772 5 3 4.55228 3 4C3 3.44772 3.44772 3 4 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Manage Alts
+              </button>
+              <button class="dropdown-item" id="settings-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 10C9.10457 10 10 9.10457 10 8C10 6.89543 9.10457 6 8 6C6.89543 6 6 6.89543 6 8C6 9.10457 6.89543 10 8 10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M12.9333 10C12.8444 10.2111 12.8216 10.4444 12.8667 10.6667C12.9111 10.8889 13.0222 11.0889 13.1889 11.2444L13.2222 11.2778C13.3574 11.413 13.4649 11.573 13.5387 11.7488C13.6125 11.9246 13.6512 12.1127 13.6512 12.3026C13.6512 12.4925 13.6125 12.6806 13.5387 12.8564C13.4649 13.0322 13.3574 13.1922 13.2222 13.3274C13.087 13.4626 12.927 13.5701 12.7512 13.6439C12.5754 13.7177 12.3873 13.7564 12.1974 13.7564C12.0075 13.7564 11.8194 13.7177 11.6436 13.6439C11.4678 13.5701 11.3078 13.4626 11.1726 13.3274L11.1393 13.2941C10.9837 13.1274 10.7837 13.0163 10.5615 12.9719C10.3393 12.9274 10.1059 12.9497 9.89481 13.0385C9.68815 13.1237 9.51259 13.2689 9.38852 13.4556C9.26444 13.6422 9.19704 13.8622 9.19481 14.0878V14.2222C9.19481 14.6063 9.04222 14.9748 8.77217 15.2448C8.50211 15.5148 8.13366 15.6667 7.74963 15.6667C7.3656 15.6667 6.99715 15.5148 6.7271 15.2448C6.45704 14.9748 6.30444 14.6063 6.30444 14.2222V14.1667C6.29444 13.9326 6.21629 13.7063 6.07888 13.5163C5.94148 13.3263 5.75111 13.1815 5.53333 13.1C5.32222 13.0111 5.08888 12.9882 4.86666 13.0333C4.64444 13.0778 4.44444 13.1889 4.28888 13.3556L4.25555 13.3889C4.12037 13.5241 3.96037 13.6316 3.78455 13.7054C3.60873 13.7792 3.42063 13.8179 3.23073 13.8179C3.04083 13.8179 2.85273 13.7792 2.67691 13.7054C2.50109 13.6316 2.34109 13.5241 2.20592 13.3889C2.07074 13.2537 1.96318 13.0937 1.88939 12.9179C1.8156 12.7421 1.77687 12.554 1.77687 12.3641C1.77687 12.1742 1.8156 11.9861 1.88939 11.8103C1.96318 11.6345 2.07074 11.4745 2.20592 11.3393L2.23925 11.3059C2.40592 11.1504 2.51703 10.9504 2.56148 10.7282C2.60592 10.5059 2.58296 10.2726 2.49407 10.0615C2.40888 9.85481 2.26333 9.67926 2.07666 9.55518C1.89 9.43111 1.66962 9.3637 1.44407 9.36148H1.30963C0.925605 9.36148 0.557154 9.20889 0.287097 8.93883C0.0170405 8.66877 -0.135559 8.30032 -0.135559 7.9163C-0.135559 7.53227 0.0170405 7.16382 0.287097 6.89377C0.557154 6.62371 0.925605 6.47111 1.30963 6.47111H1.36518C1.59925 6.46111 1.82555 6.38296 2.01555 6.24555C2.20555 6.10815 2.35037 5.91777 2.43185 5.7C2.52073 5.48888 2.54369 5.25555 2.49925 5.03333C2.45481 4.81111 2.3437 4.61111 2.17703 4.45555L2.1437 4.42222C2.00851 4.28704 1.90096 4.12704 1.82717 3.95122C1.75338 3.7754 1.71465 3.5873 1.71465 3.3974C1.71465 3.2075 1.75338 3.0194 1.82717 2.84358C1.90096 2.66776 2.00851 2.50776 2.1437 2.37259C2.27888 2.2374 2.43888 2.12985 2.6147 2.05605C2.79051 1.98226 2.97862 1.94353 3.16851 1.94353C3.35841 1.94353 3.54651 1.98226 3.72233 2.05605C3.89815 2.12985 4.05815 2.2374 4.19333 2.37259L4.22666 2.40592C4.38222 2.57259 4.58222 2.6837 4.80444 2.72815C5.02666 2.77259 5.26 2.74963 5.47111 2.66074H5.53333C5.74 2.57555 5.91555 2.43 6.03962 2.24333C6.1637 2.05666 6.23111 1.83629 6.23333 1.61074V1.47629C6.23333 1.09227 6.38592 0.723818 6.65598 0.453761C6.92603 0.183705 7.29448 0.031111 7.67851 0.031111C8.06254 0.031111 8.43099 0.183705 8.70105 0.453761C8.9711 0.723818 9.1237 1.09227 9.1237 1.47629V1.53185C9.12592 1.7574 9.19333 1.97777 9.31741 2.16444C9.44148 2.35111 9.61703 2.49666 9.8237 2.58185C10.0348 2.67074 10.2681 2.6937 10.4904 2.64926C10.7126 2.60481 10.9126 2.4937 11.0681 2.32703L11.1015 2.2937C11.2367 2.15851 11.3967 2.05096 11.5725 1.97717C11.7483 1.90338 11.9364 1.86465 12.1263 1.86465C12.3162 1.86465 12.5043 1.90338 12.6801 1.97717C12.8559 2.05096 13.0159 2.15851 13.1511 2.2937C13.2863 2.42888 13.3938 2.58888 13.4676 2.7647C13.5414 2.94051 13.5801 3.12862 13.5801 3.31851C13.5801 3.50841 13.5414 3.69651 13.4676 3.87233C13.3938 4.04815 13.2863 4.20815 13.1511 4.34333L13.1178 4.37666C12.9511 4.53222 12.84 4.73222 12.7956 4.95444C12.7511 5.17666 12.7741 5.41 12.863 5.62111V5.68333C12.9481 5.89 13.0937 6.06555 13.2804 6.18962C13.467 6.3137 13.6874 6.38111 13.913 6.38333H14.0474C14.4315 6.38333 14.7999 6.53592 15.07 6.80598C15.34 7.07603 15.4926 7.44448 15.4926 7.82851C15.4926 8.21254 15.34 8.58099 15.07 8.85105C14.7999 9.1211 14.4315 9.2737 14.0474 9.2737H13.9919C13.7663 9.27592 13.5459 9.34333 13.3593 9.46741C13.1726 9.59148 13.0271 9.76703 12.9419 9.9737V10Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Settings
+              </button>
+              <button class="dropdown-item" id="sign-out-btn">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V3.33333C2 2.97971 2.14048 2.64057 2.39052 2.39052C2.64057 2.14048 2.97971 2 3.33333 2H6M10.6667 11.3333L14 8M14 8L10.6667 4.66667M14 8H6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="layout" id="home-view">
+        <div class="launch-center">
+          <button class="launch-btn" id="launch-game">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span>PLAY</span>
+          </button>
+          
+          <div id="status" class="launch-status">Ready to launch</div>
+        </div>
+      </main>
+
+      <main class="layout hidden" id="skin-editor-view">
+        <div class="skin-editor-container">
+          <div class="panel">
+            <div class="panel-header">
+              <h2>👕 Skins</h2>
+              <div class="skin-header-controls">
+                <div class="model-toggle">
+                  <button class="model-btn active" id="model-classic" data-model="classic">
+                    <span>Classic</span>
+                  </button>
+                  <button class="model-btn" id="model-slim" data-model="slim">
+                    <span>Slim</span>
+                  </button>
+                </div>
+                <button class="primary" id="upload-skin">
+                  <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3V13M10 3L6 7M10 3L14 7M3 17H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Upload</span>
+                </button>
+              </div>
+            </div>
+            <div class="skin-library" id="skin-library">
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <main class="layout hidden mods-layout" id="mods-view">
+        <div class="mods-container">
+          <div class="panel mod-search-panel">
+            <div class="panel-header">
+              <h2>🐯 Browse Mods</h2>
+            </div>
+            <div class="mod-search">
+              <input type="text" id="mod-search" placeholder="Search Modrinth mods..." />
+              <button class="primary" id="browse-mods"><span>Search</span></button>
+            </div>
+          </div>
+
+          <div class="panel mods-results-panel">
+            <div class="panel-header">
+              <div class="mods-results-title-row">
+                <h2>Search Results</h2>
+                <select id="mods-sort" aria-label="Sort mod search results">
+                  <option value="popular" selected>Popular</option>
+                  <option value="trending">Trending</option>
+                  <option value="relevance">Relevance</option>
+                  <option value="downloads">Downloads</option>
+                </select>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="ghost" id="refresh-mods">Installed Mods</button>
+                <button class="ghost" id="import-mod-files" title="Import .jar mod files">⬆ Import .jar</button>
+                <button class="ghost" id="update-all-mods" style="display: none;" title="Update all mods">⬆ Update All</button>
+                <button class="ghost" id="open-mods-folder" title="Open mods folder">📁 Open Folder</button>
+              </div>
+            </div>
+            <div id="mods-list" class="mods-list">
+              <div class="empty">Search for mods above, click "Installed Mods", or drag and drop .jar files here</div>
+            </div>
+          </div>
+
+          <div id="mods-status" data-tone="info">
+            Ready to browse mods
+          </div>
+        </div>
+      </main>
+
+      <main class="layout hidden" id="logs-view">
+        <div class="logs-container">
+          <div class="panel logs-panel">
+            <div class="panel-header">
+              <h2>📋 Console Logs</h2>
+              <button class="ghost" id="clear-logs" title="Clear all logs">🗑️ Clear</button>
+            </div>
+            <div class="logs-content" id="logs-content">
+              <div class="log-entry log-info">
+                <span class="log-timestamp">[${new Date().toLocaleTimeString()}]</span>
+                <span class="log-message">Launcher initialized. Ready to capture logs.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <main class="layout hidden" id="screenshots-view">
+        <div class="screenshots-container">
+          <div class="panel screenshots-panel">
+            <div class="panel-header">
+              <h2>📷 Screenshots</h2>
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="ghost" id="refresh-screenshots" title="Refresh screenshots">🔄 Refresh</button>
+                <button class="ghost" id="open-screenshots-folder" title="Open screenshots folder">📁 Open Folder</button>
+              </div>
+            </div>
+            <div class="screenshots-grid" id="screenshots-grid">
+              <div class="empty">No screenshots found. Take some screenshots in-game with F2!</div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div id="screenshot-modal" class="modal hidden">
+      <div class="modal-content screenshot-modal-content">
+        <div class="screenshot-modal-header">
+          <h2 id="screenshot-modal-title">Screenshot</h2>
+          <button class="modal-close" id="screenshot-modal-close">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="screenshot-modal-body">
+          <img id="screenshot-modal-image" src="" alt="Screenshot preview" />
+        </div>
+      </div>
+    </div>
+
+    <div id="alts-modal" class="modal hidden">
+      <div class="modal-content alts-modal-content">
+        <h2>Manage Alts</h2>
+        <p class="modal-desc">Switch between accounts or add new alts</p>
+        
+        <div class="alts-list" id="alts-list">
+        </div>
+        
+        <div class="alts-actions">
+          <button class="primary" id="add-alt-btn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3V13M3 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Add Alt
+          </button>
+          <button class="secondary" id="close-alts-btn">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="account-switcher-modal" class="modal hidden account-switcher-modal">
+      <div class="modal-content account-switcher-content">
+        <h2>Switch Account</h2>
+        <p class="modal-desc">Choose an account to play with</p>
+        
+        <div class="account-switcher-list" id="account-switcher-list">
+        </div>
+        
+        <div class="account-switcher-actions">
+          <button class="secondary" id="close-switcher-btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <div id="skin-name-modal" class="modal hidden">
+      <div class="modal-content skin-name-modal-content">
+        <h2>Name Your Skin</h2>
+        <div class="skin-name-preview-container">
+          <img id="skin-name-preview" class="skin-name-preview-img" src="" alt="Skin preview" />
+        </div>
+        <input type="text" id="skin-name-input" class="skin-name-input" placeholder="Enter skin name..." maxlength="30" />
+        <div class="skin-name-actions">
+          <button class="primary" id="confirm-skin-name">Add Skin</button>
+          <button class="secondary" id="cancel-skin-name">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal hidden" id="settings-modal">
+      <div class="modal-content settings-modal-content">
+        <div class="modal-header">
+          <div class="modal-header-content">
+            <div class="modal-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15V15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h2>Settings</h2>
+          </div>
+          <button class="modal-close" id="settings-close-btn">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="settings-grid">
+            <!-- Application Info Card -->
+            <div class="settings-card app-info-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Application</h3>
+              </div>
+              <div class="settings-card-body">
+                <div class="info-row">
+                  <span class="info-label">Version</span>
+                  <span class="info-value" id="app-version">Loading...</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Type</span>
+                  <span class="info-value">Minecraft Launcher</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Platform</span>
+                  <span class="info-value">Windows</span>
+                </div>
+                <div class="info-row">
+                  <span class="info-label">Updates</span>
+                  <button class="ghost" id="check-updates-btn" title="Check for updates">Check</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Performance Card -->
+            <div class="settings-card performance-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Performance</h3>
+              </div>
+              <div class="settings-card-body">
+                <div class="setting-item">
+                  <div class="setting-row">
+                    <label for="ram-slider" class="setting-label">RAM Allocation</label>
+                    <div class="setting-value ram-value-pill" id="ram-value">2048 MB</div>
+                  </div>
+                  <input type="range" id="ram-slider" min="1024" max="16384" step="512" value="2048" class="ram-slider">
+                  <div class="ram-scale">
+                    <span id="ram-min-label">1 GB</span>
+                    <span id="ram-max-label">16 GB</span>
+                  </div>
+                  <div class="ram-presets" id="ram-presets">
+                    <button type="button" class="ram-preset" data-ram="2048">2 GB</button>
+                    <button type="button" class="ram-preset" data-ram="4096">4 GB</button>
+                    <button type="button" class="ram-preset" data-ram="6144">6 GB</button>
+                    <button type="button" class="ram-preset" data-ram="8192">8 GB</button>
+                  </div>
+                  <div class="setting-hint" id="ram-system-total">System memory: -- GB</div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-row">
+                    <label for="start-on-boot-toggle" class="setting-label">Start on Windows launch</label>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="start-on-boot-toggle">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="setting-hint">Launch Tiger Client automatically when you sign in to Windows</div>
+                </div>
+                <div class="setting-item">
+                  <div class="setting-row">
+                    <label for="auto-ram-toggle" class="setting-label">Auto RAM Allocation</label>
+                    <label class="toggle-switch">
+                      <input type="checkbox" id="auto-ram-toggle">
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                  <div class="setting-hint">Automatically picks a safe RAM amount based on your PC</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Features Card -->
+            <div class="settings-card features-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Features</h3>
+              </div>
+              <div class="settings-card-body">
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Fabric Mod Loader</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Modrinth Integration</span>
+                </div>
+                <div class="feature-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>Version Isolation</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Danger Zone Card -->
+            <div class="settings-card danger-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon danger-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <h3>Danger Zone</h3>
+              </div>
+              <div class="settings-card-body">
+                <p class="danger-description">This action will permanently remove Tiger Launcher and all its data from your system.</p>
+                <button class="uninstall-btn" id="uninstall-btn">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M2 4H14M12.6667 4V13.3333C12.6667 14 12 14.6667 11.3333 14.6667H4.66667C4 14.6667 3.33333 14 3.33333 13.3333V4M5.33333 4V2.66667C5.33333 2 6 1.33333 6.66667 1.33333H9.33333C10 1.33333 10.6667 2 10.6667 2.66667V4M6.66667 7.33333V11.3333M9.33333 7.33333V11.3333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  Uninstall Tiger Launcher
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/skinview3d@3.0.0/bundle/skinview3d.bundle.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

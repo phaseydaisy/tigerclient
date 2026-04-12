@@ -1,0 +1,89 @@
+<!-- Friend System HTML Markup -->
+<!-- Add to sidebar navigation: -->
+<button class="sidebar-item" id="friends-btn">
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M7 8C8.65685 8 10 6.65685 10 5C10 3.34315 8.65685 2 7 2C5.34315 2 4 3.34315 4 5C4 6.65685 5.34315 8 7 8ZM11 3C12.1046 3 13 2.10457 13 1C13 -0.104569 12.1046 -1 11 -1C9.89543 -1 9 -0.104569 9 1C9 2.10457 9.89543 3 11 3ZM7 9H1V18H13V9H7ZM11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V9H9V5C9 6.65685 10.3431 8 12 8C13.6569 8 15 6.65685 15 5V9H17V18H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Friends</span>
+</button>
+
+<!-- Friends View Panel -->
+<main class="layout hidden" id="friends-view">
+  <div class="friends-container">
+    <div class="friends-header">
+      <h2>👥 Friends</h2>
+      <button class="primary" id="add-friend-btn" title="Add a friend">+ Add Friend</button>
+    </div>
+
+    <div class="friends-content">
+      <!-- Requests Section with Toggle -->
+      <div class="friends-section requests-section">
+        <div class="requests-header">
+          <h3>📬 Requests</h3>
+          <div class="request-toggle">
+            <button class="toggle-btn active" id="toggle-incoming" data-type="incoming">Incoming</button>
+            <button class="toggle-btn" id="toggle-outgoing" data-type="outgoing">Outgoing</button>
+          </div>
+        </div>
+        <div class="friend-requests" id="friend-requests">
+          <div class="empty">No incoming requests</div>
+        </div>
+      </div>
+
+      <!-- Online Friends Section -->
+      <div class="friends-section">
+        <h3>🟢 Online Friends</h3>
+        <div class="friends-list" id="friends-list-online">
+          <div class="empty">No friends online</div>
+        </div>
+      </div>
+
+      <!-- All Friends Section -->
+      <div class="friends-section">
+        <h3>👨 All Friends</h3>
+        <div class="friends-list" id="friends-list-all">
+          <div class="empty">No friends yet. Add friends to get started!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Add Friend Modal -->
+<div id="add-friend-modal" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Add Friend</h2>
+      <button class="modal-close" id="add-friend-modal-close">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-description">Enter your friend's Minecraft username</p>
+      <input type="text" id="friend-username-input" placeholder="e.g., Steve123" class="input-field" />
+      <div class="modal-error hidden" id="add-friend-error"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="secondary" id="add-friend-cancel">Cancel</button>
+      <button class="primary" id="add-friend-submit">Send Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- Element References to add to init: -->
+<!--
+  elements.friendsBtn = qs("#friends-btn");
+  elements.friendsView = qs("#friends-view");
+  elements.friendRequestsList = qs("#friend-requests");
+  elements.friendsListOnline = qs("#friends-list-online");
+  elements.friendsListAll = qs("#friends-list-all");
+  elements.addFriendBtn = qs("#add-friend-btn");
+  elements.addFriendModal = qs("#add-friend-modal");
+  elements.friendUsernameInput = qs("#friend-username-input");
+  elements.addFriendSubmit = qs("#add-friend-submit");
+  elements.addFriendCancel = qs("#add-friend-cancel");
+  elements.addFriendModalClose = qs("#add-friend-modal-close");
+  elements.addFriendError = qs("#add-friend-error");
+-->

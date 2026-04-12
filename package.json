@@ -1,0 +1,58 @@
+{
+  "name": "tiger-launcher",
+  "version": "7.11.23",
+  "description": "Advanced Minecraft Java Edition launcher with Microsoft OAuth, skin management, Modrinth mods, and auto-launch",
+  "main": "main.js",
+  "author": "phawse",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "release": "node scripts/release.js",
+    "publish": "node scripts/publish.js"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.11.1",
+    "@electron-forge/maker-squirrel": "^7.11.1",
+    "@electron-forge/maker-zip": "^7.11.1",
+    "electron": "^40.4.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "Tiger Launcher",
+        "executableName": "tiger-client",
+        "icon": "assets/icon.ico",
+        "win32metadata": {
+          "CompanyName": "Tiger Launcher",
+          "FileDescription": "Advanced Minecraft Java Edition Launcher",
+          "OriginalFilename": "tiger-client.exe",
+          "ProductName": "Tiger Launcher",
+          "InternalName": "tiger-client"
+        }
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "TigerClient",
+            "authors": "phawse",
+            "setupIcon": "assets/icon.ico",
+            "setupExe": "TigerClientSetup.exe"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "win32"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "discord-rpc": "^4.0.1",
+    "windows-shortcuts": "^0.1.6"
+  }
+}
